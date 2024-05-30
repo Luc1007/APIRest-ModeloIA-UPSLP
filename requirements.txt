@@ -23,6 +23,7 @@ uvicorn==0.28.0
 Werkzeug==3.0.1
 sqlalchemy>=1.4
 psycopg2-binary>=2.9
+gunicorn
 xgboost==2.0.3
 fastapi
 uvicorn
