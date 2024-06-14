@@ -18,6 +18,15 @@ class ModeloMLShow(BaseModel):
     metricas: Optional[str] = None
     # No incluimos el campo modelo_binario para no enviar datos binarios grandes en la respuesta
 
+class ModeloMLShow(BaseModel):
+    id: int
+    nombre_archivo: str
+    descripcion: Optional[str] = None
+    fecha_creacion: datetime
+
+    class Config:
+        orm_mode = True
+        
 class ModeloMLUpdate(BaseModel):
     nombre_archivo: Optional[str] = Field(None, description="Nombre del archivo del modelo")
     descripcion: Optional[str] = Field(None, description="Descripción del modelo")

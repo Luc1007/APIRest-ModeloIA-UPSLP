@@ -13,7 +13,7 @@ app.include_router(ml_endpoints.router)
 
 @app.get("/")
 async def read_root():
-    return {"message": "Bienvenido a mi API FastAPI"}  # Mensaje de bienvenida
+    return {"message": "Bienvenido a mi API FastAPI"}  # Mensaje de bienvenidos
 
 
 

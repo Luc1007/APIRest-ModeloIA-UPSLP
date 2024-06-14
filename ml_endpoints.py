@@ -103,10 +103,3 @@ async def get_prediction(modelo_id: int, archivo: UploadFile = File(None), tipo_
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error interno del servidor: {str(e)}")
 
-
-
-
-
-@router.get("/check_model")
-def check_model():
-    return {"mensaje": mensaje_carga}

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Depends
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy.orm import Session
 from models_sql import ModeloML
 from schemas import ModeloMLCreate, ModeloMLShow, ModeloMLUpdate
@@ -133,3 +133,10 @@ def delete_modelo(modelo_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Modelo eliminado con éxito"}
 
+@router.get("/check_modelos", response_model=List[ModeloMLShow])
+async def get_modelos(db: Session = Depends(get_db)):
+    try:
+        modelos = db.query(ModeloML).all()
+        return modelos
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
