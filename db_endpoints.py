@@ -92,7 +92,9 @@ async def entrenar_y_seleccionar_modelo(
         db.commit()
         db.refresh(db_modelo)
         
-        return db_modelo
+        # Retornar el ID del modelo guardado
+        return {"id_modelo": db_modelo.id}
+    
     except FileNotFoundError:
         raise HTTPException(status_code=400, detail="El archivo especificado no fue encontrado")
     except pd.errors.EmptyDataError:
