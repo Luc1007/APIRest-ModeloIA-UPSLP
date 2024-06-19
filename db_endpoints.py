@@ -20,8 +20,7 @@ def get_db():
         db.close()
 
 async def entrenar_y_seleccionar_modelo(
-        nombre_archivo: str, 
-        ruta_archivo: str,
+        nombre_modelo: str, 
         descripcion: Optional[str], 
         archivo: UploadFile = File(None),
         db: Session = Depends(get_db)):
@@ -79,11 +78,10 @@ async def entrenar_y_seleccionar_modelo(
 
         # Crear el objeto de modelo para la base de datos
         db_modelo = ModeloML(
-            nombre_archivo= nombre_archivo + ' -  ' + ruta_archivo.split('/')[-1],
+            nombre_archivo= nombre_modelo,
             descripcion=descripcion_final,
             tipo_modelo=mejor_modelo_nombre,
             metricas=resultados[mejor_modelo_nombre],
-            ruta_archivo=ruta_archivo,
             modelo_binario=modelo_binario
         )
         
@@ -103,8 +101,8 @@ async def entrenar_y_seleccionar_modelo(
         raise HTTPException(status_code=400, detail=str(e))
     
 @router.post("/modelos/create")
-async def create_modelo(nombre_archivo: str, ruta_archivo: str, descripcion: Optional[str] = None,  archivo: UploadFile = File(None), db: Session = Depends(get_db)):
-    return await entrenar_y_seleccionar_modelo(nombre_archivo, ruta_archivo, descripcion, archivo, db)
+async def create_modelo(nombre_archivo: str, descripcion: Optional[str] = None,  archivo: UploadFile = File(None), db: Session = Depends(get_db)):
+    return await entrenar_y_seleccionar_modelo(nombre_archivo, descripcion, archivo, db)
 
 @router.patch("/modelos/update/{modelo_id}", response_model=ModeloMLShow)
 def update_modelo(modelo_id: int, modelo: ModeloMLUpdate, db: Session = Depends(get_db)):

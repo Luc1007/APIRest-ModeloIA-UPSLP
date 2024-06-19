@@ -17,5 +17,4 @@ class ModeloML(Base):
     fecha_creacion = Column(DateTime(timezone=True), server_default=func.now())
     metricas = Column(Text)
     modelo_binario = Column(BINARY)
-    ruta_archivo = Column(String(255), nullable=False)
 

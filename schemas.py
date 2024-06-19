@@ -6,7 +6,6 @@ import base64
 class ModeloMLCreate(BaseModel):
     nombre_archivo: str = Field(..., min_length=1, max_length=255)
     descripcion: Optional[str] = Field(None, max_length=500)
-    ruta_archivo: str
 
 
 class ModeloMLShow(BaseModel):
