@@ -3,6 +3,7 @@ version: '3.9'
 services:
   postgresql:
     image: postgres:13
+    restart: always
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 1234
@@ -20,8 +21,6 @@ services:
       - postgresql
     ports:
       - "8000:80"
-    environment:
-      - SQLALCHEMY_DATABASE_URL= "postgresql://admin:1234@db:5432/db_modelos"
 volumes:
   postgres_data:
 
