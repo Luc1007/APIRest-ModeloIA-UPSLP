@@ -17,8 +17,6 @@ services:
   web:
     build: .
     restart: always
-    depends_on:
-      - postgresql
     ports:
       - "8000:80"
 volumes:
