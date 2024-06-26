@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  postgres:
+  postgresql:
     image: postgres:13
     restart: always
     environment:
@@ -18,7 +18,7 @@ services:
     build: .
     restart: always
     depends_on:
-      - db
+      - postgresql
     ports:
       - "8000:80"
     environment:
