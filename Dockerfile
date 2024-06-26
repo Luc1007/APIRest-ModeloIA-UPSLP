@@ -15,7 +15,6 @@ COPY . .
 
 # Exponer el puerto en el que se ejecutará la aplicación
 EXPOSE 80
-EXPOSE 5432
 
 # Comando para ejecutar la aplicación
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
