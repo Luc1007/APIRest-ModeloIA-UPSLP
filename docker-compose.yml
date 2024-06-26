@@ -5,8 +5,8 @@ services:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: administrador
-      POSTGRES_PASSWORD: proyectoML%
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
       POSTGRES_DB: db_modelos
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -17,8 +17,6 @@ services:
   web:
     build: .
     restart: always
-    environment:
-      DATABASE_URL: postgresql://administrador:proyectoML%@db:5432/db_modelos
     depends_on:
       - db
     ports:
