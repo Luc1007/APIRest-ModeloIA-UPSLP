@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  postgresql:
+  potgresql:
     image: postgres:13
     restart: always
     environment:
@@ -22,6 +22,7 @@ services:
     ports:
       - "8000:80"
     environment:
-      - DATABASE_URL= "postgres://admin:1234@db:5432/db_modelos"
+      - SQLALCHEMY_DATABASE_URL= "postgresql://admin:1234@db:5432/db_modelos"
 volumes:
   postgres_data:
+
