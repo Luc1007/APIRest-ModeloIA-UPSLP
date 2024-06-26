@@ -15,22 +15,6 @@ COPY . .
 
 # Exponer el puerto en el que se ejecutará la aplicación
 EXPOSE 80
-EXPOSE 5432
 
 # Comando para ejecutar la aplicación
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
-
-# Instalación y configuración de PostgreSQL
-# Utilizar una imagen base de PostgreSQL
-FROM postgres:13
-
-# Variables de entorno para PostgreSQL
-ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=password
-ENV POSTGRES_DB=mydatabase
-
-# Copiar el script SQL de inicialización al contenedor
-COPY init.sql /docker-entrypoint-initdb.d/
-
-# CMD para iniciar tanto PostgreSQL como la aplicación FastAPI
-CMD ["bash", "-c", "service postgresql start && uvicorn main:app --host 0.0.0.0 --port 80"]
