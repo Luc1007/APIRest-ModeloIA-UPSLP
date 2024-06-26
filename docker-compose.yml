@@ -13,12 +13,19 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+    networks:
+      - pynetwork
 
   web:
     build: .
     restart: always
     ports:
       - "8000:80"
+    networks:
+      - pynetwork
+networks:
+    pynetwork:
+        driver: bridge
 volumes:
   postgres_data:
 
