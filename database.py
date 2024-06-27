@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgres://admin:1234@db:5432/db_modelos"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:1234@localhost:5432/db_modelos"
 #SQLALCHEMY_DATABASE_URL = "postgresql://administrador:proyectoML%@basedatospostgres.postgres.database.azure.com:5432/db_modelos"
 
 

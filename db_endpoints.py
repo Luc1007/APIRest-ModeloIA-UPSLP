@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Depends
 from typing import Optional, List
 from sqlalchemy.orm import Session
 from models_sql import ModeloML
-from schemas import ModeloMLCreate, ModeloMLShow, ModeloMLUpdate
+from schemas import *
 from database import SessionLocal
 import pickle
 import binascii
@@ -136,5 +136,16 @@ async def get_modelos(db: Session = Depends(get_db)):
     try:
         modelos = db.query(ModeloML).all()
         return modelos
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/unique/modelo/{modelo_id}", response_model=List[ModeloMLShow_1])
+def get_modelo_by_id(modelo_id: int, db: Session = Depends(get_db)):
+    try:
+        db_modelo = db.query(ModeloML).filter(ModeloML.id == modelo_id).all()
+        print(db_modelo)
+        if not db_modelo:
+            raise HTTPException(status_code=404, detail="Modelo no encontrado")
+        return db_modelo
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

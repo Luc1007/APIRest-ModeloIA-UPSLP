@@ -17,11 +17,12 @@ class ModeloMLShow(BaseModel):
     metricas: Optional[str] = None
     # No incluimos el campo modelo_binario para no enviar datos binarios grandes en la respuesta
 
-class ModeloMLShow(BaseModel):
+class ModeloMLShow_1(BaseModel):
     id: int
     nombre_archivo: str
     descripcion: Optional[str] = None
     fecha_creacion: datetime
+    metricas: Optional[str] = None
 
     class Config:
         orm_mode = True
